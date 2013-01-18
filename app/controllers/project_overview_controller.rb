@@ -14,7 +14,7 @@ class ProjectOverviewController < ApplicationController
         if Setting.plugin_project_overview.has_key?(:exclude_projects)
           scope = scope.where("id NOT IN (?)", Setting.plugin_project_overview[:exclude_projects])
         end
-        @projects = scope.visible.order('name DESC').all
+        @projects = scope.visible.order('name ASC').all
       }
     end
   end
