@@ -4,12 +4,12 @@
 <% if active || @stale %>
 <tr>
 	<td><%= link_to project.name, project_path(project) %></td>
-	<td><%= active ? "Active" : "Stale" %></td>
-	<td><%= current_version.name if current_version %></td>
-	<td><%= progress_bar([current_version.closed_pourcent, current_version.completed_pourcent], :width => "100%") if current_version %></td>
-	<td><%= current_version.due_date if current_version %></td>
+	<td align="center"><%= active ? "Active" : "Stale" %></td>
+	<td align="center"><%= current_version.name if current_version %></td>
+	<td align="center"><%= progress_bar([current_version.closed_pourcent, current_version.completed_pourcent], :width => "100%") if current_version %></td>
+	<td align="center"><%= current_version.due_date if current_version %></td>
 	<% project.visible_custom_field_values.each do |custom_value| %>
-		<td>
+		<td align="center">
 	  	<% if !custom_value.value.blank? %>
 	     	<%=h show_value(custom_value) %>
 	  	<% end %>
