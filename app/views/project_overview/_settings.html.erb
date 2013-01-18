@@ -1,0 +1,9 @@
+<p>
+  <%= content_tag(:label, l(:label_po_settings_stale_num_days)) %>
+  <%= text_field_tag("settings[stale_num_days]", Setting.plugin_project_overview[:stale_num_days].to_i) %>
+</p>
+
+<p>
+  <%= content_tag(:label, l(:label_po_settings_exclude_projects)) %>
+  <%= select_tag("settings[exclude_projects]", options_from_collection_for_select(Project.active.order("name DESC"), :id, :name, Setting.plugin_project_overview[:exclude_projects]), { :multiple=> true, :style => "height: 300px;" }) %>
+</p>

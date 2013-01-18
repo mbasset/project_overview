@@ -1,0 +1,35 @@
+<% content_for :header_tags do %>
+    <%= auto_discovery_link_tag(:atom, {:action => 'index', :format => 'atom', :key => User.current.rss_key}) %>
+<% end %>
+
+<h2><%=l(:label_project_overview)%></h2>
+
+<div id="projects-index">
+	<table>
+		<thead>
+			<th>Name</th>
+			<th>Status</th>
+			<th>Current Version</th>
+			<th>Progress</th>
+			<th>Due Date</th>
+			<% ProjectCustomField.scoped.each do |custom_field| %>
+				<th><%= custom_field.name %></th>
+			<% end %>
+		</thead>
+		<tbody>
+			<%= render(:partial => "project", :collection => @projects) %>
+		</tbody>
+	</table>
+</div>
+
+<% content_for :sidebar do %>
+  <%= form_tag({}, :method => :get) do %>
+    <h3><%= l(:label_project_plural) %></h3>
+    <label for="closed"><%= check_box_tag 'closed', 1, params[:closed] %> <%= l(:label_show_closed_projects) %></label>
+    <br />
+    <label for="stale"><%= check_box_tag 'stale', 1, params[:stale] %> <%= l(:label_show_stale_projects) %></label>
+    <p><%= submit_tag l(:button_apply), :class => 'button-small', :name => nil %></p>
+  <% end %>
+<% end %>
+
+<% html_title(l(:label_project_plural)) -%>

@@ -1,0 +1,20 @@
+<% current_version = project.versions.where("effective_date >= ?", Time.now).last %>
+<% active = (current_version && Redmine::Activity::Fetcher.new(User.current, :project => project, :with_subprojects => true).events(Time.now - Setting.plugin_project_overview[:stale_num_days].to_i.days, Time.now).any?) %>
+
+<% if active || @stale %>
+<tr>
+	<td><%= link_to project.name, project_path(project) %></td>
+	<td><%= active ? "Active" : "Stale" %></td>
+	<td><%= current_version.name if current_version %></td>
+	<td><%= progress_bar([current_version.closed_pourcent, current_version.completed_pourcent]) if current_version %></td>
+	<td><%= current_version.due_date if current_version %></td>
+	<% project.visible_custom_field_values.each do |custom_value| %>
+		<td>
+	  	<% if !custom_value.value.blank? %>
+	     	<%=h show_value(custom_value) %>
+	  	<% end %>
+		</td>
+  <% end %>
+
+</tr>
+<% end %>

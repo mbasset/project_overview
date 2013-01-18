@@ -1,0 +1,3 @@
+= Project Overview
+
+A plugin useful for teams with multiple projects and different stages.
