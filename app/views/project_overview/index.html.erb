@@ -7,11 +7,11 @@
 <div class="autoscroll">
 	<table class="list">
 		<thead>
-			<th>Name</th>
-			<th>Status</th>
-			<th>Current Version</th>
-			<th>Progress</th>
-			<th>Due Date</th>
+			<th><%= l(:label_project_name) %></th>
+			<th><%= l(:label_project_status) %></th>
+			<th><%= l(:label_project_current_version) %></th>
+			<th><%= l(:label_project_progress) %></th>
+			<th><%= l(:label_project_due_date) %></th>
 			<% ProjectCustomField.scoped.each do |custom_field| %>
 				<th><%= custom_field.name %></th>
 			<% end %>
