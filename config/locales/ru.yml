@@ -1,0 +1,16 @@
+# Russian strings go here for Rails i18n
+ru:
+  label_project_overview: "Обзор проектов"
+  label_show_stale_projects: "Просматривать устаревшие проекты"
+
+  label_po_settings_stale_num_days: "Через сколько дней отсутствия активности считать проект устаревшим:"
+  label_po_settings_exclude_projects: "Исключить проекты:"
+
+  label_project_name: "Имя"
+  label_project_status: "Состояние"
+  label_project_current_version: "Текущая версия"
+  label_project_progress: "Выполнено"
+  label_project_due_date: "Дата выполнения"
+
+  project_active: "Активен"
+  project_stale: "Устарел"
