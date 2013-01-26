@@ -4,7 +4,7 @@ Project overview is a plugin designed to bring better project visibility for
 teams that deal with multiple projects on a daily basis. It is useful for teams
 with multiple projects each in different stages. 
 
-http://./tree/master/doc/example1.png)
+https://raw.github.com/mbasset/project_overview/master/doc/example1.png
 
 == Customizations
 
