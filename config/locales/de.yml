@@ -11,5 +11,4 @@ de:
   label_project_progress: "Fortschritt"
   label_project_due_date: "Abgabetermin"
   
-  project_active: "aktiv"
-  project_stale: "inaktiv"
+  project_status_stale: "inaktiv"

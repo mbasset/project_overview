@@ -12,5 +12,4 @@ ru:
   label_project_progress: "Выполнено"
   label_project_due_date: "Дата выполнения"
 
-  project_active: "Активен"
-  project_stale: "Устарел"
+  project_status_stale: "Устарел"
