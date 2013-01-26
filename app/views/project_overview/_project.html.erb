@@ -5,7 +5,7 @@
 	<% active = (current_version && Redmine::Activity::Fetcher.new(User.current, :project => project, :with_subprojects => true).events(Time.now - Setting.plugin_project_overview[:stale_num_days].to_i.days, Time.now).any?) %>
 <% end %>
 
-<% if active || @stale %>
+<% if active || @stale || project.archived? || !project.active? %>
 <tr>
 	<td><%= link_to project.name, project_path(project) %></td>
 	<td align="center">
