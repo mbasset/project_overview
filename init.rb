@@ -4,7 +4,7 @@ Redmine::Plugin.register :project_overview do
   name 'Project Overview'
   author 'Matthew Basset'
   description 'Updates the project overview page to make it more useful for teams.'
-  version '1.0.0'
+  version '1.1.0'
   url 'https://github.com/mbasset/project_overview'
   author_url 'http://mbasset.info'
 
