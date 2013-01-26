@@ -1,5 +1,9 @@
 <% current_version = project.versions.where("effective_date >= ?", Time.now).last %>
-<% active = (current_version && Redmine::Activity::Fetcher.new(User.current, :project => project, :with_subprojects => true).events(Time.now - Setting.plugin_project_overview[:stale_num_days].to_i.days, Time.now).any?) %>
+
+<% active = true %>
+<% if Setting.plugin_project_overview[:stale_enable] %>
+	<% active = (current_version && Redmine::Activity::Fetcher.new(User.current, :project => project, :with_subprojects => true).events(Time.now - Setting.plugin_project_overview[:stale_num_days].to_i.days, Time.now).any?) %>
+<% end %>
 
 <% if active || @stale %>
 <tr>

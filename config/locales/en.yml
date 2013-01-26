@@ -3,8 +3,14 @@ en:
   label_project_overview: "Project Overview"
   label_show_stale_projects: "View stale projects"
 
-  label_po_settings_stale_num_days: "Number of days of inactivity before a project becomes stale:"
+  label_po_settings_stale_enable: "Stale projects:"
+  label_po_settings_stale_enable_desc: "Enables the ability to classify projects as stale."
+
+  label_po_settings_stale_num_days: "Number stale days:"
+  label_po_settings_stale_num_days_desc: "Number of days of redmine inactivity before a project becomes stale."
+  
   label_po_settings_exclude_projects: "Exclude projects:"
+  label_po_settings_exclude_projects_desc: "Projects to exlucde from the list displayed in the overview panel."
 
   label_project_name: "Name"
   label_project_status: "Status"
