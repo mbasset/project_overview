@@ -1,0 +1,15 @@
+de:
+  label_project_overview: "Projektübersicht"
+  label_show_stale_projects: "inaktive Projekte anzeigen"
+  
+  label_po_settings_stale_num_days: "Anzahl der Tage ohne Aktivität bevor ein Projekt als inaktiv gekennzeichnet wird:"
+  label_po_settings_exclude_projects: "Folgende Projekte nicht einbeziehen:"
+  
+  label_project_name: "Name"
+  label_project_status: "Status"
+  label_project_current_version: "Aktuelle Version / Release"
+  label_project_progress: "Fortschritt"
+  label_project_due_date: "Abgabetermin"
+  
+  project_active: "aktiv"
+  project_stale: "inaktiv"
