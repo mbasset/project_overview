@@ -31,8 +31,9 @@
     <% if Setting.plugin_project_overview[:stale_enable] %>
 	    <br />
 	    <label for="stale"><%= check_box_tag 'stale', 1, params[:stale] %> <%= l(:label_show_stale_projects) %></label>
-	    <p><%= submit_tag l(:button_apply), :class => 'button-small', :name => nil %></p>
     <% end %>
+    
+    <p><%= submit_tag l(:button_apply), :class => 'button-small', :name => nil %></p>
     
   <% end %>
 <% end %>
