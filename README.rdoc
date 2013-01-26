@@ -1,3 +1,21 @@
 = Project Overview
 
-A plugin useful for teams with multiple projects and different stages.
+Project overview is a plugin designed to bring better project visibility for
+teams that deal with multiple projects on a daily basis. It is useful for teams
+with multiple projects each in different stages. 
+
+![Example Page](doc/example1.png)
+
+== Customizations
+
+The plugin contains some simple mechanisms to help configure the plugin to match
+your teams style of management.
+
+Stale days::  The number of days that a project goes without activity before
+  being considered stale.
+Exclude projects::  Excludes these projects entirely from being disabled on the 
+  project overview page.
+
+== License
+
+Project overview is released under the MIT License agreement.
