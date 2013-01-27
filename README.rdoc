@@ -15,6 +15,17 @@ Stale days:: The number of days that a project goes without activity before
              being considered stale.
 Exclude projects:: Excludes these projects entirely from being disabled on the 
                    project overview page.
+== Installation
+
+Navigate to your {REDMINE_ROOT}/plugins and <tt>git clone git://github.com/mbasset/project_overview.git</tt>
+
+After the repo is cloned run the following tasks on your {REDMINE_ROOT}:
+
+* <tt>bundle install</tt>
+
+* <tt>bundle exec rake redmine:plugins NAME=project_overview RAILS_ENV=production</tt> # or development
+
+Restart your redmine and navigate to Administration > Plugins for configuration options
 
 == License
 
