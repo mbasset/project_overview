@@ -11,21 +11,30 @@ https://raw.github.com/mbasset/project_overview/master/doc/example1.png
 The plugin contains some simple mechanisms to help configure the plugin to match
 your teams style of management.
 
-Stale days:: The number of days that a project goes without activity before
-             being considered stale.
-Exclude projects:: Excludes these projects entirely from being disabled on the 
-                   project overview page.
+=== Project Settings
+
+Stale enabled:: Whether to enable or disable stale project classifcations.
+Number stale days:: The number of days that a project goes without activity before being considered stale.
+Exclude projects:: Excludes these projects entirely from being disabled on the project overview page.
+                   
+=== Team Settings             
+   
+Number inactive days:: The number of days before a team member is considered inactive.
+                   
 == Installation
 
 Navigate to your {REDMINE_ROOT}/plugins and <tt>git clone git://github.com/mbasset/project_overview.git</tt>
 
 After the repo is cloned run the following tasks on your {REDMINE_ROOT}:
 
-* <tt>bundle install</tt>
-
-* <tt>bundle exec rake redmine:plugins NAME=project_overview RAILS_ENV=production</tt> # or development
+(1) <tt>bundle install</tt>
+(2) <tt>bundle exec rake redmine:plugins NAME=project_overview RAILS_ENV=production</tt>
 
 Restart your redmine and navigate to Administration > Plugins for configuration options
+
+== Contributions
+
+All feedback and contributions are welcome. Simply issue a pull request or create a new issue.
 
 == License
 
