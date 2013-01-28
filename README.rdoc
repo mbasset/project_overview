@@ -27,8 +27,8 @@ Navigate to your {REDMINE_ROOT}/plugins and <tt>git clone git://github.com/mbass
 
 After the repo is cloned run the following tasks on your {REDMINE_ROOT}:
 
-(1) <tt>bundle install</tt>
-(2) <tt>bundle exec rake redmine:plugins NAME=project_overview RAILS_ENV=production</tt>
+1. <tt>bundle install</tt>
+2. <tt>bundle exec rake redmine:plugins NAME=project_overview RAILS_ENV=production</tt>
 
 Restart your redmine and navigate to Administration > Plugins for configuration options
 
