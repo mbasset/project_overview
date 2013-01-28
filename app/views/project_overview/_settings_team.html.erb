@@ -1,0 +1,6 @@
+<p>
+  <%= content_tag(:label, l(:label_po_settings_inactive_team_num_days)) %>
+  <%= text_field_tag("settings[inactive_team_num_days]", Setting.plugin_project_overview[:inactive_team_num_days].to_i) %>
+  <br />
+  <small><%= l(:label_po_settings_inactive_team_num_days_desc) %></small>
+</p>

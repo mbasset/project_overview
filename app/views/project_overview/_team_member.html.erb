@@ -1,0 +1,10 @@
+<% last_event = last_user_event(team_member) %>
+<% if last_event && last_event.created_on >= Time.now - Setting.plugin_project_overview[:inactive_team_num_days].to_i.days %>
+	<div class="po_team_member">
+		<div class="upper_left"><%= avatar team_member, :size => "50" %></div>
+		<div class="upper_right"><%= link_to team_member.name, user_path(team_member), :class => "name", "data-id" => team_member.id %></div>
+		<div class="clear"></div>
+		<p><%= raw "Working on: " + link_to(last_event.project.name, project_path(last_event.project)) %></p>
+		<p><%= "Open issues: " + Issue.where(:assigned_to_id => team_member).open.count.to_s %></p>
+	</div>
+<% end %>

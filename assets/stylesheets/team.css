@@ -1,0 +1,28 @@
+.po_team_member {
+	float: left;
+	display: inline-block;
+	height: 150px;
+	width: 220px;
+	border: 1px solid gray;
+	border-radius: 3px;
+	margin: 5px;
+	padding: 5px;
+}
+
+.po_team_member .upper_left {
+	float: left;
+	margin-right: 5px;
+}
+
+.po_team_member .upper_right {
+	float: right {
+}
+
+.po_team_member .clear {
+	clear: both;
+}
+
+.po_team_member p {
+	margin: 0;
+	padding: 0;
+}

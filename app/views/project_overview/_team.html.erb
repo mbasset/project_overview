@@ -1,0 +1,6 @@
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag "team", :plugin => "project_overview" %>
+  <%= javascript_include_tag "team", :plugin => "project_overview" %>
+<% end %>
+
+<%= render(:partial => "team_member", :collection => @team_members) %>

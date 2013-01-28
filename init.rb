@@ -13,6 +13,10 @@ Redmine::Plugin.register :project_overview do
   settings :default => {
     :stale_enable => true,
     :stale_num_days => 14,
-    :exclude_projects => []
+    :exclude_projects => [],
+    :inactive_team_num_days => 14
   }, :partial => 'project_overview/settings'
 end
+
+require 'settings_helper'
+SettingsHelper.send :include, ProjectOverviewHelper

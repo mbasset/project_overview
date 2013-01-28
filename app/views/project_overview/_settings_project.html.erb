@@ -1,0 +1,24 @@
+<p>
+  <%= content_tag(:label, l(:label_po_settings_stale_enable)) %>
+  <%= check_box_tag("settings[stale_enable]", true, Setting.plugin_project_overview[:stale_enable]) %>
+  <br />
+  <small><%= l(:label_po_settings_stale_enable_desc) %></small>
+</p>
+
+<% if Setting.plugin_project_overview[:stale_enable] %>
+	<p>
+	  <%= content_tag(:label, l(:label_po_settings_stale_num_days)) %>
+	  <%= text_field_tag("settings[stale_num_days]", Setting.plugin_project_overview[:stale_num_days].to_i) %>
+	  <br />
+	  <small><%= l(:label_po_settings_stale_num_days_desc) %></small>
+	</p>
+<% else %>
+	<%= hidden_field_tag "settings[stale_num_days]", Setting.plugin_project_overview[:stale_num_days].to_i %>
+<% end %>
+
+<p>
+  <%= content_tag(:label, l(:label_po_settings_exclude_projects)) %>
+  <%= select_tag("settings[exclude_projects]", options_from_collection_for_select(Project.active.order("name ASC"), :id, :name, Setting.plugin_project_overview[:exclude_projects]), { :multiple=> true, :style => "height: 300px;" }) %>
+  <br />
+  <small><%= l(:label_po_settings_exclude_projects_desc) %></small>
+</p>

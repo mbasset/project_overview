@@ -1,0 +1,33 @@
+<% content_for :sidebar do %>
+  <%= form_tag({}, :method => :get) do %>
+  
+    <h3><%= l(:label_project_plural) %></h3>
+    <label for="closed"><%= check_box_tag 'closed', 1, params[:closed] %> <%= l(:label_show_closed_projects) %></label>
+    
+    <% if Setting.plugin_project_overview[:stale_enable] %>
+	    <br />
+	    <label for="stale"><%= check_box_tag 'stale', 1, params[:stale] %> <%= l(:label_show_stale_projects) %></label>
+    <% end %>
+    
+    <p><%= submit_tag l(:button_apply), :class => 'button-small', :name => nil %></p>
+    
+  <% end %>
+<% end %>
+
+<div class="autoscroll">
+	<table class="list">
+		<thead>
+			<th><%= l(:label_project_name) %></th>
+			<th><%= l(:label_project_status) %></th>
+			<th><%= l(:label_project_current_version) %></th>
+			<th><%= l(:label_project_progress) %></th>
+			<th><%= l(:label_project_due_date) %></th>
+			<% ProjectCustomField.scoped.each do |custom_field| %>
+				<th><%= custom_field.name %></th>
+			<% end %>
+		</thead>
+		<tbody>
+			<%= render(:partial => "project", :collection => @projects) %>
+		</tbody>
+	</table>
+</div>

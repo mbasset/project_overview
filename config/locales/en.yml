@@ -3,6 +3,7 @@ en:
   label_project_overview: "Project Overview"
   label_show_stale_projects: "View stale projects"
 
+  label_po_settings_project: "Project Settings"
   label_po_settings_stale_enable: "Stale projects:"
   label_po_settings_stale_enable_desc: "Enables the ability to classify projects as stale."
 
@@ -11,6 +12,13 @@ en:
   
   label_po_settings_exclude_projects: "Exclude projects:"
   label_po_settings_exclude_projects_desc: "Projects to exlucde from the list displayed in the overview panel."
+
+  label_po_settings_team: "Team Settings"
+  label_po_settings_inactive_team_num_days: "Inactive days:"
+  label_po_settings_inactive_team_num_days_desc: "The number of days before a team member is considered inactive."
+
+  label_po_projects: "Projects"
+  label_po_team: "Team"
 
   label_project_name: "Name"
   label_project_status: "Status"
