@@ -1,4 +1,4 @@
-class ProjectOverviewController < ApplicationController
+class OverviewController < ApplicationController
   unloadable
 
   def index

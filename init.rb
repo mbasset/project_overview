@@ -8,14 +8,14 @@ Redmine::Plugin.register :project_overview do
   url 'https://github.com/mbasset/project_overview'
   author_url 'http://mbasset.info'
 
-  menu :top_menu, :overview, { :controller => 'project_overview', :action => 'index' }, :before => :projects
+  menu :top_menu, :overview, { :controller => 'overview', :action => 'index' }, :before => :projects
   
   settings :default => {
     :stale_enable => true,
     :stale_num_days => 14,
     :exclude_projects => [],
     :inactive_team_num_days => 14
-  }, :partial => 'project_overview/settings'
+  }, :partial => 'overview/settings'
 end
 
 require 'settings_helper'

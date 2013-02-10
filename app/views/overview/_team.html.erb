@@ -1,0 +1,17 @@
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag "team", :plugin => "project_overview" %>
+  <%= javascript_include_tag "team", :plugin => "project_overview" %>
+<% end %>
+
+<div id="team_members"></div>
+<script type="text/javascript">
+$(function() {
+	$.each([<%= @team_members.map(&:id).join(",") %>], function(i, v) {
+		$.ajax({
+		  url: "<%= overview_team_member_path(:id => "XXX") %>".replace("XXX", v),
+		  dataType: "script",
+		  data: {id : v}
+		});
+	});
+});
+</script>

@@ -1,14 +1,14 @@
 module ProjectOverviewHelper
   
   def project_overview_tabs
-    [ {:name => 'projects', :partial => 'project_overview/projects', :label => :label_po_projects},
-      {:name => 'team', :partial => 'project_overview/team', :label => :label_po_team}
+    [ {:name => 'projects', :partial => 'overview/projects', :label => :label_po_projects},
+      {:name => 'team', :partial => 'overview/team', :label => :label_po_team}
     ]
   end
   
   def project_overview_settings_tabs
-    [ {:name => 'project', :partial => 'project_overview/settings_project', :label => :label_po_settings_project},
-      {:name => 'team', :partial => 'project_overview/settings_team', :label => :label_po_settings_team}
+    [ {:name => 'project', :partial => 'overview/settings_project', :label => :label_po_settings_project},
+      {:name => 'team', :partial => 'overview/settings_team', :label => :label_po_settings_team}
     ]
   end
   
