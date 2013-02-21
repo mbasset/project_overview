@@ -1,5 +1,8 @@
 class OverviewController < ApplicationController
   unloadable
+  
+  helper :project_overview
+  helper :custom_fields
 
   def index
     respond_to do |format|
