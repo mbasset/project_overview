@@ -9,7 +9,7 @@ en:
 
   label_po_settings_stale_num_days: "Number stale days:"
   label_po_settings_stale_num_days_desc: "Number of days of redmine inactivity before a project becomes stale."
-  
+
   label_po_settings_exclude_projects: "Exclude projects:"
   label_po_settings_exclude_projects_desc: "Projects to exlucde from the list displayed in the overview panel."
 
@@ -25,5 +25,6 @@ en:
   label_project_current_version: "Current version"
   label_project_progress: "Progress"
   label_project_due_date: "Due date"
-  
+  label_project_ratio: "Ratio"
+
   project_status_stale: "Stale"
