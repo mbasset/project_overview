@@ -24,8 +24,8 @@
 		<td align="center"><%= link_to(current_version.name, version_path(current_version)) if current_version %></td>
 		<td align="center"><%= current_version.due_date if current_version %></td>
 		<td align="center"><%= progress_bar([current_version.closed_pourcent, current_version.completed_pourcent], :width => "100%") if current_version %></td>
-		<td align="center"><%= actual_hours.round(0) %></td>
 		<td align="center"><%= estimated_hours.round(0) %></td>
+		<td align="center"><%= actual_hours.round(0) %></td>
 
 			<% buffer_margin = Setting.plugin_project_overview[:velocity_warning_margin].to_i %>
 			<% hours_burned_percentage = estimated_hours == 0 ? 0 : (actual_hours/estimated_hours)*100  %>
