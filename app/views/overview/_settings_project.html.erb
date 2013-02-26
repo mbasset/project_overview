@@ -17,6 +17,13 @@
 <% end %>
 
 <p>
+  <%= content_tag(:label, l(:label_po_settings_velocity_warning_margin)) %>
+  <%= select_tag("settings[velocity_warning_margin]", options_for_select((0..50).step(5).map {|i| [i.to_s + "%", i]}, Setting.plugin_project_overview[:velocity_warning_margin]), {:style => "height: 100px;" }) %>
+  <br />
+  <small><%= l(:label_po_settings_velocity_warning_margin_desc) %></small>
+</p>
+
+<p>
   <%= content_tag(:label, l(:label_po_settings_exclude_projects)) %>
   <%= select_tag("settings[exclude_projects]", options_from_collection_for_select(Project.active.order("name ASC"), :id, :name, Setting.plugin_project_overview[:exclude_projects]), { :multiple=> true, :style => "height: 300px;" }) %>
   <br />

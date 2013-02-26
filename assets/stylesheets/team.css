@@ -1,3 +1,30 @@
+/**
+ * Project overview specific css.
+ */
+table tr.po_project td {
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+.po_project td.on_track {
+  background-color: #EEFFD4;
+}
+
+.po_project td.off_track {
+  background-color: #FF7A7C;
+}
+
+.po_project td.intervention {
+  background-color: #FDECDA;
+}
+
+.po_project td.veering {
+  background-color: #FFFCD9;
+}
+
+/**
+ * Team member specific css.
+ */
 .po_team_member {
 	float: left;
 	display: inline-block;

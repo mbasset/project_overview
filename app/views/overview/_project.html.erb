@@ -6,9 +6,9 @@
 <% end %>
 
 <% if active || @stale || project.archived? || !project.active? %>
-	<% actual_hours = TimeEntry.visible.sum(:hours, :include => :project, :conditions => project.project_condition(true)).to_i %>
-	<% estimated_hours = project.issues.sum(:estimated_hours).to_i %>
-	<tr>
+	<% actual_hours = TimeEntry.visible.sum(:hours, :include => :project, :conditions => project.project_condition(true)) %>
+	<% estimated_hours = project.issues.sum(:estimated_hours) %>
+	<tr class="po_project">
 		<td><%= link_to project.name, project_path(project) %></td>
 		<td align="center">
 		  <% if project.archived? %>
@@ -24,9 +24,33 @@
 		<td align="center"><%= link_to(current_version.name, version_path(current_version)) if current_version %></td>
 		<td align="center"><%= current_version.due_date if current_version %></td>
 		<td align="center"><%= progress_bar([current_version.closed_pourcent, current_version.completed_pourcent], :width => "100%") if current_version %></td>
-		<td align="center"><%= actual_hours %></td>
-		<td align="center"><%= estimated_hours %></td>
-		<td align="center"><%= (((actual_hours.to_f - estimated_hours.to_f)/estimated_hours.to_f).round(2) * 100).to_s + "%" if estimated_hours > 0 %></td>
+		<td align="center"><%= actual_hours.round(0) %></td>
+		<td align="center"><%= estimated_hours.round(0) %></td>
+
+			<% buffer_margin = Setting.plugin_project_overview[:velocity_warning_margin].to_i %>
+			<% hours_burned_percentage = estimated_hours == 0 ? 0 : (actual_hours/estimated_hours)*100  %>
+			<% ticket_completion_percentage = project.completed_percent(:include_subprojects => true) %>
+
+			<% velocity_class = "on_track" %>
+			<% velocity_title = l(:project_velocity_on_track) %>
+			<% if hours_burned_percentage > ticket_completion_percentage %>
+				<% velocity_class = "off_track" %>
+				<% velocity_title = l(:project_velocity_off_target) %>
+			<% elsif hours_burned_percentage + buffer_margin*2 > ticket_completion_percentage %>
+				<% velocity_class = "intervention" %>
+				<% velocity_title = l(:project_velocity_intervention) %>
+			<% elsif hours_burned_percentage + buffer_margin > ticket_completion_percentage %>
+				<% velocity_class = "veering" %>
+				<% velocity_title = l(:project_velocity_veering) %>
+			<% end %>
+
+		<td align="center" class="<%= velocity_class %>" title="<%= velocity_title %>">
+			<% if estimated_hours > 0 %>
+				<%= (((actual_hours - estimated_hours)/estimated_hours).round(2) * 100).to_s + "%" %>
+			<% else %>
+				0.0%
+			<% end %>
+		</td>
 		<% project.visible_custom_field_values.each do |custom_value| %>
 			<% next unless Setting.plugin_project_overview[:include_project_fields].to_a.include?(custom_value.custom_field_id.to_s) %>
 			<td align="center">
