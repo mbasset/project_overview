@@ -20,12 +20,13 @@
 			<th><%= l(:label_project_name) %></th>
 			<th><%= l(:label_project_status) %></th>
 			<th><%= l(:label_project_current_version) %></th>
+			<th><%= l(:label_project_due_date) %></th>
 			<th><%= l(:label_project_progress) %></th>
 			<th><%= l(:field_estimated_hours) %></th>
 			<th><%= l(:label_spent_time) %></th>
 			<th><%= l(:label_project_ratio) %></th>
-			<th><%= l(:label_project_due_date) %></th>
 			<% ProjectCustomField.scoped.each do |custom_field| %>
+				<% next unless Setting.plugin_project_overview[:include_project_fields].to_a.include?(custom_field.id.to_s) %>
 				<th><%= custom_field.name %></th>
 			<% end %>
 		</thead>

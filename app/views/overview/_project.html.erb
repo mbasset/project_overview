@@ -22,12 +22,13 @@
 			<% end %>
 		</td>
 		<td align="center"><%= link_to(current_version.name, version_path(current_version)) if current_version %></td>
+		<td align="center"><%= current_version.due_date if current_version %></td>
 		<td align="center"><%= progress_bar([current_version.closed_pourcent, current_version.completed_pourcent], :width => "100%") if current_version %></td>
 		<td align="center"><%= actual_hours %></td>
 		<td align="center"><%= estimated_hours %></td>
 		<td align="center"><%= (((actual_hours.to_f - estimated_hours.to_f)/estimated_hours.to_f).round(2) * 100).to_s + "%" if estimated_hours > 0 %></td>
-		<td align="center"><%= current_version.due_date if current_version %></td>
 		<% project.visible_custom_field_values.each do |custom_value| %>
+			<% next unless Setting.plugin_project_overview[:include_project_fields].to_a.include?(custom_value.custom_field_id.to_s) %>
 			<td align="center">
 		  	<% if !custom_value.value.blank? %>
 		     	<%=h show_value(custom_value) %>

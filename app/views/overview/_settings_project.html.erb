@@ -22,3 +22,10 @@
   <br />
   <small><%= l(:label_po_settings_exclude_projects_desc) %></small>
 </p>
+
+<p>
+  <%= content_tag(:label, l(:label_po_settings_include_project_fields)) %>
+  <%= select_tag("settings[include_project_fields]", options_from_collection_for_select(ProjectCustomField.scoped.order("name ASC"), :id, :name, Setting.plugin_project_overview[:include_project_fields]), { :multiple=> true, :style => "height: 100px;" }) %>
+  <br />
+  <small><%= l(:label_po_settings_include_project_fields_desc) %></small>
+</p>
