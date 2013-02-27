@@ -10,7 +10,7 @@
 	<% estimated_hours = project.issues.sum(:estimated_hours) %>
 
 	<tr class="po_project">
-		<td><%= link_to project.name, project_path(project) %></td>
+		<td title="<%= project_full_title(project) %>"><%= link_to project.name, project_path(project) %></td>
 		<% if Setting.plugin_project_overview[:stale_enable] %>
 			<td align="center">
 			  <% if project.archived? %>
