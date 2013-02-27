@@ -8,6 +8,7 @@
 <% if active || @stale || project.archived? || !project.active? %>
 	<% actual_hours = TimeEntry.visible.sum(:hours, :include => :project, :conditions => project.project_condition(true)) %>
 	<% estimated_hours = project.issues.sum(:estimated_hours) %>
+
 	<tr class="po_project">
 		<td><%= link_to project.name, project_path(project) %></td>
 		<% if Setting.plugin_project_overview[:stale_enable] %>
@@ -31,6 +32,45 @@
 			<% else %>
 				<%= progress_bar([project.completed_percent(:include_subprojects => true), 0], :width => "100%") %>
 			<% end %>
+		</td>
+		<td align="center">
+			<div id="<%= "project_#{project.id}" %>"></div>
+			<script type="text/javascript">
+	      google.load("visualization", "1", {packages:["corechart"]});
+	      google.setOnLoadCallback(drawChart);
+	      function drawChart() {
+	        var data = google.visualization.arrayToDataTable([
+	          ['Project', 'Estimated Hours', 'Actual Hours'],
+	          ['<%= project.name %>', <%= estimated_hours %>, <%= actual_hours %>],
+	        ]);
+
+	        var options = {
+	        	axisTitlesPosition: 'none',
+	          height: 20,
+	          width: 150,
+	          chartArea: {
+	          	top: 0,
+	          	height: "100%",
+	          	width: "100%"
+	          },
+	          bar: {
+	          	groupWidth: 20
+	          },
+	          hAxis: {
+	          	minValue: 0,
+	          	gridlines: {
+	          		count: 3
+	          	}
+	          },
+	          vAxis: {
+	          	textPosition: 'none'
+	          }
+	        };
+
+	        var chart = new google.visualization.BarChart(document.getElementById('<%= "project_#{project.id}" %>'));
+	        chart.draw(data, options);
+	      }
+	    </script>
 		</td>
 		<td align="center"><%= estimated_hours.round(0) %></td>
 		<td align="center"><%= actual_hours.round(0) %></td>

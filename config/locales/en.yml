@@ -41,6 +41,7 @@ en:
   label_project_status: "Status"
   label_project_current_version: "Current version"
   label_project_progress: "Progress"
+  label_project_budget_comparision: "Budget Comparison"
   label_project_due_date: "Next Due date"
   label_project_ratio: "Ratio"
 
