@@ -35,10 +35,10 @@
 <% end %>
 
 <p>
-  <%= content_tag(:label, l(:label_po_settings_progress_by_version)) %>
-  <%= check_box_tag("settings[progress_by_version]", true, Setting.plugin_project_overview[:progress_by_version]) %>
+  <%= content_tag(:label, l(:label_po_settings_progress_ratio)) %>
+  <%= check_box_tag("settings[progress_ratio]", true, Setting.plugin_project_overview[:progress_ratio]) %>
   <br />
-  <small><%= l(:label_po_settings_progress_by_version_desc) %></small>
+  <small><%= l(:label_po_settings_progress_ratio_desc) %></small>
 </p>
 
 <p>

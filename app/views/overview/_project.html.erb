@@ -92,13 +92,18 @@
 				<% velocity_title = l(:project_velocity_veering) %>
 			<% end %>
 
+		<% if Setting.plugin_project_overview[:progress_ratio] %>
+			<td align="center">
+				<% if estimated_hours > 0 %>
+					<%= (((actual_hours - estimated_hours)/estimated_hours).round(2) * 100).to_s + "%" %>
+				<% else %>
+					0.0%
+				<% end %>
+			</td>
+		<% end %>
 		<td align="center" class="<%= velocity_class %>" title="<%= velocity_title %>">
-			<% if estimated_hours > 0 %>
-				<%= (((actual_hours - estimated_hours)/estimated_hours).round(2) * 100).to_s + "%" %>
-			<% else %>
-				0.0%
-			<% end %>
 		</td>
+
 		<% project.visible_custom_field_values.each do |custom_value| %>
 			<% next unless Setting.plugin_project_overview[:include_project_fields].to_a.include?(custom_value.custom_field_id.to_s) %>
 			<td align="center">

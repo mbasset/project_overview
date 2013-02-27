@@ -13,6 +13,9 @@ en:
   label_po_settings_progress_by_version: "Progress by version:"
   label_po_settings_progress_by_version_desc: "Display the progress bar for the current active project version rather than the entire project."
 
+  label_po_settings_progress_ratio: "Display Ratio"
+  label_po_settings_progress_ratio_desc: "Display the project progress ratio compared to estimated values. Formula: (actual_hours - estimated_hours)/estimated_hours %"
+
   label_po_settings_exclude_projects: "Exclude projects:"
   label_po_settings_exclude_projects_desc: "Projects to exlucde from the list displayed in the overview panel."
 
@@ -44,6 +47,7 @@ en:
   label_project_budget_comparision: "Budget Comparison"
   label_project_due_date: "Next Due date"
   label_project_ratio: "Ratio"
+  label_project_health: "Health"
 
   project_status_stale: "Stale"
 

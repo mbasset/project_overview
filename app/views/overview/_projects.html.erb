@@ -31,7 +31,10 @@
 			<th><%= l(:label_project_budget_comparision) %></th>
 			<th><%= l(:field_estimated_hours) %></th>
 			<th><%= l(:label_spent_time) %></th>
-			<th><%= l(:label_project_ratio) %></th>
+			<% if Setting.plugin_project_overview[:progress_ratio] %>
+				<th><%= l(:label_project_ratio) %></th>
+			<% end %>
+			<th><%= l(:label_project_health) %></th>
 			<% ProjectCustomField.scoped.each do |custom_field| %>
 				<% next unless Setting.plugin_project_overview[:include_project_fields].to_a.include?(custom_field.id.to_s) %>
 				<th><%= custom_field.name %></th>
