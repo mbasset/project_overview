@@ -9,12 +9,15 @@ Redmine::Plugin.register :project_overview do
   author_url 'http://mbasset.info'
 
   menu :top_menu, :overview, { :controller => 'overview', :action => 'index' }, :before => :projects
-  
+
   settings :default => {
     :stale_enable => true,
     :stale_num_days => 14,
     :exclude_projects => [],
-    :inactive_team_num_days => 14
+    :inactive_team_num_days => 14,
+    :project_order => "by_name",
+    :activity_sum_days => 14,
+    :velocity_warning_margin => 5
   }, :partial => 'overview/settings'
 end
 
