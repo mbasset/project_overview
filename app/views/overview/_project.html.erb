@@ -10,17 +10,19 @@
 	<% estimated_hours = project.issues.sum(:estimated_hours) %>
 	<tr class="po_project">
 		<td><%= link_to project.name, project_path(project) %></td>
-		<td align="center">
-		  <% if project.archived? %>
-				<%= l(:project_status_archived) %>
-			<% elsif !project.active? %>
-				<%= l(:project_status_closed) %>
-			<% elsif !active %>
-				<%= l(:project_status_stale) %>
-			<% else %>
-				<%= l(:project_status_active) %>
-			<% end %>
-		</td>
+		<% if Setting.plugin_project_overview[:stale_enable] %>
+			<td align="center">
+			  <% if project.archived? %>
+					<%= l(:project_status_archived) %>
+				<% elsif !project.active? %>
+					<%= l(:project_status_closed) %>
+				<% elsif !active %>
+					<%= l(:project_status_stale) %>
+				<% else %>
+					<%= l(:project_status_active) %>
+				<% end %>
+			</td>
+		<% end %>
 		<td align="center"><%= link_to(current_version.name, version_path(current_version)) if current_version %></td>
 		<td align="center"><%= current_version.due_date if current_version %></td>
 		<td align="center"><%= progress_bar([current_version.closed_pourcent, current_version.completed_pourcent], :width => "100%") if current_version %></td>

@@ -18,7 +18,9 @@
 	<table class="list">
 		<thead>
 			<th><%= l(:label_project_name) %></th>
-			<th><%= l(:label_project_status) %></th>
+			<% if Setting.plugin_project_overview[:stale_enable] %>
+				<th><%= l(:label_project_status) %></th>
+			<% end %>
 			<th><%= l(:label_project_current_version) %></th>
 			<th><%= l(:label_project_due_date) %></th>
 			<th><%= l(:label_project_progress) %></th>
