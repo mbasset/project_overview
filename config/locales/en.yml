@@ -16,6 +16,14 @@ en:
   label_po_settings_include_project_fields: "Include custom fields:"
   label_po_settings_include_project_fields_desc: "Include these custom fields on the overview panel."
 
+  label_po_settings_project_order: "Order Projects:"
+  label_po_settings_project_order_desc: "Choose how ordering of each project works."
+  label_po_settings_project_order_by_name: "By Name"
+  label_po_settings_project_order_by_activity: "By Activity"
+
+  label_po_settings_activity_sum_days: "Number of days of activity:"
+  label_po_settings_activity_sum_days_desc: "The number of days of activity to consider when ordering projects by activity."
+
   label_po_settings_velocity_warning_margin: "Velocity warning margin:"
   label_po_settings_velocity_warning_margin_desc: 'Used when comparing the percentage of tickets completed to the hours burned to determine whether a project is considered "On Track", "Veering", "Intervention Required" or "Off Target"'
 
