@@ -22,6 +22,10 @@ table tr.po_project td {
   background-color: #FFFCD9;
 }
 
+.po_project td.po_progress {
+  width: 150px;
+}
+
 /**
  * Team member specific css.
  */

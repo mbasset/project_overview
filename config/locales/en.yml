@@ -10,6 +10,9 @@ en:
   label_po_settings_stale_num_days: "Number stale days:"
   label_po_settings_stale_num_days_desc: "Number of days of redmine inactivity before a project becomes stale."
 
+  label_po_settings_progress_by_version: "Progress by version:"
+  label_po_settings_progress_by_version_desc: "Display the progress bar for the current active project version rather than the entire project."
+
   label_po_settings_exclude_projects: "Exclude projects:"
   label_po_settings_exclude_projects_desc: "Projects to exlucde from the list displayed in the overview panel."
 
@@ -47,4 +50,3 @@ en:
   project_velocity_veering: "Veering"
   project_velocity_intervention: "Intervention Required"
   project_velocity_off_target: "Off Target"
-
