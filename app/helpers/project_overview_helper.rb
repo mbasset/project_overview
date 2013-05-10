@@ -22,7 +22,7 @@ module ProjectOverviewHelper
   def project_overview_estimated_time(project)
     estimated_hours = 0
     project.self_and_descendants.each do |p|
-      estimated_hours += p.issues.inject(0) { |sum, i| !i.parent.nil? ? sum : sum + i.estimated_hours.to_i }
+      estimated_hours += p.issues.inject(0) { |sum, i| !i.parent.nil? ? sum : sum + i.estimated_hours.to_f }
     end
     estimated_hours
   end
