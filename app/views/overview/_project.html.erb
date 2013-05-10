@@ -6,8 +6,9 @@
 <% end %>
 
 <% if active || @stale || project.archived? || !project.active? %>
-	<% actual_hours = TimeEntry.visible.sum(:hours, :include => :project, :conditions => project.project_condition(true)) %>
-	<% estimated_hours = project.issues.sum(:estimated_hours) %>
+
+	<% actual_hours = project_overview_spent_time(project) %>
+	<% estimated_hours = project_overview_estimated_time(project) %>
 
 	<tr class="po_project">
 		<td title="<%= project_full_title(project) %>"><%= link_to project.name, project_path(project) %></td>

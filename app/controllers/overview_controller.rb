@@ -3,6 +3,8 @@ class OverviewController < ApplicationController
 
   helper :project_overview
   helper :custom_fields
+  helper :queries
+  include QueriesHelper
 
   def index
     respond_to do |format|
