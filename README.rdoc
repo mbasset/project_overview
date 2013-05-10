@@ -36,6 +36,10 @@ Restart your redmine and navigate to Administration > Plugins for configuration 
 
 All feedback and contributions are welcome. Simply issue a pull request or create a new issue.
 
+== Credits
+
+"Project Overview" is maintained by Matthew Basset through the support and time of Soft Gravity, Inc.
+
 == License
 
 Project overview is released under the MIT License agreement.

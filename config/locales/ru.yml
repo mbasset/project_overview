@@ -1,15 +1,57 @@
 # Russian strings go here for Rails i18n
 ru:
   label_project_overview: "Обзор проектов"
-  label_show_stale_projects: "Просматривать устаревшие проекты"
+  label_show_stale_projects: "Показать устаревшие проекты"
 
-  label_po_settings_stale_num_days: "Через сколько дней отсутствия активности считать проект устаревшим:"
+  label_po_settings_project: "Настройки проекта"
+  label_po_settings_stale_enable: "Устаревшие проекты:"
+  label_po_settings_stale_enable_desc: "Включает возможность классификации проектов как устаревшие."
+
+  label_po_settings_stale_num_days: "Срок устаревания:"
+  label_po_settings_stale_num_days_desc: "Количество дней неактивности в Redmine до устаревания проекта."
+
+  label_po_settings_progress_by_version: "Прогресс для версии:"
+  label_po_settings_progress_by_version_desc: "Отображать для текущего проекта прогресс по актуальной версии, а не по всему проекту."
+
+  label_po_settings_progress_ratio: "Коэффициент отображения"
+  label_po_settings_progress_ratio_desc: "Коэффициент отображения прогресса проекта относительно ожидаемого срока. Формула: (реальные_часы - ожидаемые_часы)/ожидаемые_часы %"
+
   label_po_settings_exclude_projects: "Исключить проекты:"
+  label_po_settings_exclude_projects_desc: "Проекты, которые не следует показывать на панели обозрения."
 
-  label_project_name: "Имя"
+  label_po_settings_include_project_fields: "Включить настраиваемые поля:"
+  label_po_settings_include_project_fields_desc: "Добавить указанные настраиваемые поля на панель обозрения."
+
+  label_po_settings_project_order: "Порядок проектов:"
+  label_po_settings_project_order_desc: "Выберите, как должно работать упорядочивание проектов."
+  label_po_settings_project_order_by_name: "По имени"
+  label_po_settings_project_order_by_activity: "По активности"
+
+  label_po_settings_activity_sum_days: "Продолжительность активности:"
+  label_po_settings_activity_sum_days_desc: "Количество дней активности, учитываемое при упорядочивании проектов по активности."
+
+  label_po_settings_velocity_warning_margin: "Рубеж предупреждения об эффективности:"
+  label_po_settings_velocity_warning_margin_desc: 'Используется при сравнении соотношения количества завершённых задач к затраченному времени для определения состояния проекта: "Продвигается", "Переменчиво", "Требуется вмешательство" или "Простаивает"'
+
+  label_po_settings_team: "Командные настройки"
+  label_po_settings_inactive_team_num_days: "Дней неактивности:"
+  label_po_settings_inactive_team_num_days_desc: "Количество дней для признания члена команды неактивным."
+
+  label_po_projects: "Проекты"
+  label_po_team: "Команда"
+
+  label_project_name: "Название"
   label_project_status: "Состояние"
-  label_project_current_version: "Текущая версия"
-  label_project_progress: "Выполнено"
-  label_project_due_date: "Дата выполнения"
+  label_project_current_version: "Актуальная версия"
+  label_project_progress: "Прогресс"
+  label_project_budget_comparision: "Сравнение бюджетов"
+  label_project_due_date: "Следующая дата выпуска"
+  label_project_ratio: "Коэффициент"
+  label_project_health: "Жизнь"
 
   project_status_stale: "Устарел"
+
+  project_velocity_on_track: "Продвигается"
+  project_velocity_veering: "Переменчиво"
+  project_velocity_intervention: "Требуется вмешательство"
+  project_velocity_off_target: "Простаивает"
