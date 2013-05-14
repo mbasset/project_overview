@@ -1,14 +1,57 @@
+# German translation
 de:
   label_project_overview: "Projektübersicht"
   label_show_stale_projects: "inaktive Projekte anzeigen"
-  
-  label_po_settings_stale_num_days: "Anzahl der Tage ohne Aktivität bevor ein Projekt als inaktiv gekennzeichnet wird:"
+
+  label_po_settings_project: "Projekteinstellungen"
+  label_po_settings_stale_enable: "Inaktive Projekte:"
+  label_po_settings_stale_enable_desc: "Aktiviert die Möglichkeit Projekte als inaktiv zu kennzeichnen."
+
+  label_po_settings_stale_num_days: "Anzahl der Tage bis Inaktivität:"
+  label_po_settings_stale_num_days_desc: "Anzahl der Tage ohne Aktivität bevor ein Projekt als inaktiv gekennzeichnet wird:"
+
+  label_po_settings_progress_by_version: "Fortschritt nach Version:"
+  label_po_settings_progress_by_version_desc: "Zeige den Fortschrittsbalken der aktiven Version und nicht des gesamten Projektes an."
+
+  label_po_settings_progress_ratio: "Anzeige-Verhältnis"
+  label_po_settings_progress_ratio_desc: "Zeige das Projekt-Fortschritts-Verhältnis im Vergleich zur veranschlagten Zeit an. Formel: (tatsächliche_Stunden - veranschlagte_Stunden)/veranschlagte_Stunden %"
+
   label_po_settings_exclude_projects: "Folgende Projekte nicht einbeziehen:"
-  
+  label_po_settings_exclude_projects_desc: "Projekte die aus der Liste in der Übersicht ausgeschlossen werden sollen."
+
+  label_po_settings_include_project_fields: "Eigene Felder mit einbeziehen:"
+  label_po_settings_include_project_fields_desc: "Diese eigenen Felder auf der Übersicht anzeigen."
+
+  label_po_settings_project_order: "Projektsortierung:"
+  label_po_settings_project_order_desc: "Wähle aus nach nach welchen Kriterien die Projekte sortiert werden sollen."
+  label_po_settings_project_order_by_name: "Nach Name"
+  label_po_settings_project_order_by_activity: "Nach Aktivität"
+
+  label_po_settings_activity_sum_days: "Anzahl der Tage der Aktivität:"
+  label_po_settings_activity_sum_days_desc: "Die Anzahl an Tagen der Aktivität die beim sortieren der Projekte nach Aktivität berücksichtigt werden sollen."
+
+  label_po_settings_velocity_warning_margin: "Fortschritts-Warnungs-Begrenzung:"
+  label_po_settings_velocity_warning_margin_desc: 'Wird verwendet beim Vergleich der abgeschlossenen Tickets mit den abgearbeiteten Stunden um festzulegen ob ein Projekt als "Auf Kurs", "Vom Kurs abgekommen", "Eingriff notwendig" oder "Ziel verfehlt" betrachtet wird'
+
+  label_po_settings_team: "Team-Einstellungen"
+  label_po_settings_inactive_team_num_days: "Tage bis Inaktivität:"
+  label_po_settings_inactive_team_num_days_desc: "Anzahl der Tage ohne Aktivität bis ein Teammitglied als inaktiv betrachtet wird."
+
+  label_po_projects: "Projekte"
+  label_po_team: "Team"
+
   label_project_name: "Name"
   label_project_status: "Status"
-  label_project_current_version: "Aktuelle Version / Release"
+  label_project_current_version: "Aktuelle Version"
   label_project_progress: "Fortschritt"
+  label_project_budget_comparision: "Budget-Vergleich"
   label_project_due_date: "Abgabetermin"
-  
+  label_project_ratio: "Verhätlnis"
+  label_project_health: "Zustand"
+
   project_status_stale: "inaktiv"
+
+  project_velocity_on_track: "Auf Kurs"
+  project_velocity_veering: "Vom Kurs abgekommen"
+  project_velocity_intervention: "Eingriff notwendig"
+  project_velocity_off_target: "Ziel verfehlt"
