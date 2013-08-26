@@ -11,10 +11,13 @@ en:
   label_po_settings_stale_num_days_desc: "Number of days of redmine inactivity before a project becomes stale."
 
   label_po_settings_progress_by_version: "Progress by version:"
-  label_po_settings_progress_by_version_desc: "Display the progress bar for the current active project version rather than the entire project."
+  label_po_settings_progress_by_version_desc: "Display the progress bar for the current active project version."
 
   label_po_settings_progress_ratio: "Display Ratio"
-  label_po_settings_progress_ratio_desc: "Display the project progress ratio compared to estimated values. Formula: (actual_hours - estimated_hours)/estimated_hours %"
+  label_po_settings_progress_ratio_desc: "Display the project progress ratio compared to estimated values. Formula: (actual_hours/estimated_hours)/estimated_hours %"
+
+  label_po_settings_sow_estimate_field: "SOW/CR Estimate"
+  label_po_settings_sow_estimate_field_desc: "(Optional - Number only). Use this field to add the estimate from a SOW or CR which may be different from the redmine estimate."
 
   label_po_settings_exclude_projects: "Exclude projects:"
   label_po_settings_exclude_projects_desc: "Projects to exlucde from the list displayed in the overview panel."
@@ -30,8 +33,8 @@ en:
   label_po_settings_activity_sum_days: "Number of days of activity:"
   label_po_settings_activity_sum_days_desc: "The number of days of activity to consider when ordering projects by activity."
 
-  label_po_settings_velocity_warning_margin: "Velocity warning margin:"
-  label_po_settings_velocity_warning_margin_desc: 'Used when comparing the percentage of tickets completed to the hours burned to determine whether a project is considered "On Track", "Veering", "Intervention Required" or "Off Target"'
+  label_po_settings_project_spi: "Schedule Performance Index:"
+  label_po_settings_project_spi_desc: "Schedule Performance Index equals Earned Value / Planned Value. In redmine this equates to: (actual hours / estimate hours)*(% complete)"
 
   label_po_settings_team: "Team Settings"
   label_po_settings_inactive_team_num_days: "Inactive days:"
@@ -42,12 +45,14 @@ en:
 
   label_project_name: "Name"
   label_project_status: "Status"
-  label_project_current_version: "Current version"
-  label_project_progress: "Progress"
+  label_project_current_version: "Current Version"
+  label_project_version_progress: "Version Progress"
+  label_project_progress: "Project Progress"
   label_project_budget_comparision: "Budget Comparison"
   label_project_due_date: "Next Due date"
   label_project_ratio: "Ratio"
   label_project_health: "Health"
+  label_project_spi: "SPI"
 
   project_status_stale: "Stale"
 

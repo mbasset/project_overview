@@ -10,11 +10,17 @@
 	<% actual_hours = project_overview_spent_time(project) %>
 	<% estimated_hours = project_overview_estimated_time(project) %>
 
+	<% planned_hours = nil %>
+	<% if Setting.plugin_project_overview[:sow_estimate_field] %>
+		<% planned_field_value = project.visible_custom_field_values.select { |p| p.custom_field_id == Setting.plugin_project_overview[:sow_estimate_field].to_i }.first %>
+		<% planned_hours = planned_field_value.value.to_f if planned_field_value && !planned_field_value.value.blank? %>
+	<% end %>
+
 	<tr class="po_project">
 		<td title="<%= project_full_title(project) %>"><%= link_to project.name, project_path(project) %></td>
 		<% if Setting.plugin_project_overview[:stale_enable] %>
 			<td align="center">
-			  <% if project.archived? %>
+				<% if project.archived? %>
 					<%= l(:project_status_archived) %>
 				<% elsif !project.active? %>
 					<%= l(:project_status_closed) %>
@@ -25,95 +31,109 @@
 				<% end %>
 			</td>
 		<% end %>
-		<td align="center"><%= link_to(current_version.name, version_path(current_version)) if current_version %></td>
-		<td align="center"><%= current_version.due_date if current_version %></td>
+		<% if !!Setting.plugin_project_overview[:progress_by_version] %>
+			<td align="center"><%= link_to(current_version.name, version_path(current_version)) if current_version %></td>
+			<td align="center" class="po_progress">
+				<% if current_version %>
+					<%= progress_bar([current_version.closed_pourcent, current_version.completed_pourcent], :width => "100%") %>
+				<% end %>
+			</td>
+			<td align="center"><%= current_version.due_date if current_version %></td>
+		<% end %>
 		<td align="center" class="po_progress">
-			<% if current_version && !!Setting.plugin_project_overview[:progress_by_version] %>
-				<%= progress_bar([current_version.closed_pourcent, current_version.completed_pourcent], :width => "100%") %>
-			<% else %>
-				<%= progress_bar([project.completed_percent(:include_subprojects => true), 0], :width => "100%") %>
-			<% end %>
+			<%= progress_bar([project.completed_percent(:include_subprojects => true), 0], :width => "100%") %>
 		</td>
 		<td align="center">
+			<% field_names = ['Project', 'Estimated Hours'] %>
+			<% field_values = [project.name, estimated_hours] %>
+
+			<% if Setting.plugin_project_overview[:sow_estimate_field] %>
+				<% sowv = show_value(project.visible_custom_field_values.select { |p| p.custom_field_id == Setting.plugin_project_overview[:sow_estimate_field].to_i }.first) %>
+				<% field_names << 'SOW/CR Hours'%>
+				<% unless sowv.blank? %>
+					<% field_values << sowv %>
+				<% else %>
+					<% field_values << 0 %>
+				<% end %>
+			<% end %>
+
+			<% field_names << 'Actual Hours' %>
+			<% field_values << actual_hours %>
+
 			<div id="<%= "project_#{project.id}" %>"></div>
 			<script type="text/javascript">
-	      google.load("visualization", "1", {packages:["corechart"]});
-	      google.setOnLoadCallback(drawChart);
-	      function drawChart() {
-	        var data = google.visualization.arrayToDataTable([
-	          ['Project', 'Estimated Hours', 'Actual Hours'],
-	          ['<%= project.name %>', <%= estimated_hours %>, <%= actual_hours %>],
-	        ]);
+				google.load("visualization", "1", {packages:["corechart"]});
+				google.setOnLoadCallback(drawChart);
+				function drawChart() {
+					var data = google.visualization.arrayToDataTable([
+						[<%= raw field_names.map{|f| "'" + f.to_s + "'" }.join(",") %>],
+						['<%= field_values[0] %>', <%= field_values[1..-1].join(",") %>]
+					]);
 
-	        var options = {
-	        	axisTitlesPosition: 'none',
-	        	enableInteractivity: false,
-	          height: 20,
-	          width: 150,
-	          chartArea: {
-	          	top: 0,
-	          	height: "100%",
-	          	width: "100%"
-	          },
-	          bar: {
-	          	groupWidth: 20
-	          },
-	          hAxis: {
-	          	minValue: 0,
-	          	gridlines: {
-	          		count: 3
-	          	}
-	          },
-	          vAxis: {
-	          	textPosition: 'none'
-	          }
-	        };
+					var options = {
+						axisTitlesPosition: 'none',
+						enableInteractivity: false,
+						height: 20,
+						width: 150,
+						chartArea: {
+							top: 0,
+							height: "100%",
+							width: "100%"
+						},
+						bar: {
+							groupWidth: 20
+						},
+						hAxis: {
+							minValue: 0,
+							gridlines: {
+								count: 3
+							}
+						},
+						vAxis: {
+							textPosition: 'none'
+						}
+					};
 
-	        var chart = new google.visualization.BarChart(document.getElementById('<%= "project_#{project.id}" %>'));
-	        chart.draw(data, options);
-	      }
-	    </script>
+					var chart = new google.visualization.BarChart(document.getElementById('<%= "project_#{project.id}" %>'));
+					chart.draw(data, options);
+				}
+			</script>
 		</td>
 		<td align="center"><%= estimated_hours.round(0) %></td>
 		<td align="center"><%= actual_hours.round(0) %></td>
 
-			<% buffer_margin = Setting.plugin_project_overview[:velocity_warning_margin].to_i %>
-			<% hours_burned_percentage = estimated_hours == 0 ? 0 : (actual_hours/estimated_hours)*100  %>
-			<% ticket_completion_percentage = project.completed_percent(:include_subprojects => true) %>
+		<% hours_burned_percentage = (planned_hours || estimated_hours) == 0 ? 0 : (actual_hours/(planned_hours || estimated_hours))*100 %>
+		<% ticket_completion_percentage = project.completed_percent(:include_subprojects => true) %>
 
-			<% velocity_class = "on_track" %>
-			<% velocity_title = l(:project_velocity_on_track) %>
-			<% if hours_burned_percentage > ticket_completion_percentage %>
-				<% velocity_class = "off_track" %>
-				<% velocity_title = l(:project_velocity_off_target) %>
-			<% elsif hours_burned_percentage + buffer_margin*2 > ticket_completion_percentage %>
-				<% velocity_class = "intervention" %>
-				<% velocity_title = l(:project_velocity_intervention) %>
-			<% elsif hours_burned_percentage + buffer_margin > ticket_completion_percentage %>
-				<% velocity_class = "veering" %>
-				<% velocity_title = l(:project_velocity_veering) %>
-			<% end %>
-
-		<% if Setting.plugin_project_overview[:progress_ratio] %>
+		<% if Setting.plugin_project_overview[:project_spi] %>
 			<td align="center">
-				<% if estimated_hours > 0 %>
-					<%= (((actual_hours - estimated_hours)/estimated_hours).round(2) * 100).to_s + "%" %>
-				<% else %>
-					0.0%
-				<% end %>
+				<%= ((hours_burned_percentage*ticket_completion_percentage)/100.0).round(1) if planned_hours %>
 			</td>
 		<% end %>
+
+		<% budget_tending_towards = hours_burned_percentage/ticket_completion_percentage %>
+		<% velocity_class = "on_track" %>
+		<% velocity_title = l(:project_velocity_on_track) %>
+		<% if budget_tending_towards > 1.15 %>
+			<% velocity_class = "off_track" %>
+			<% velocity_title = l(:project_velocity_off_target) %>
+		<% elsif budget_tending_towards > 1 && budget_tending_towards < 1.15 %>
+			<% velocity_class = "intervention" %>
+			<% velocity_title = l(:project_velocity_intervention) %>
+		<% end %>
+
 		<td align="center" class="<%= velocity_class %>" title="<%= velocity_title %>">
+			<%= (budget_tending_towards * 100.0).round(1).to_s + "%" if Setting.plugin_project_overview[:progress_ratio] %>
 		</td>
 
 		<% project.visible_custom_field_values.each do |custom_value| %>
 			<% next unless Setting.plugin_project_overview[:include_project_fields].to_a.include?(custom_value.custom_field_id.to_s) %>
 			<td align="center">
-		  	<% if !custom_value.value.blank? %>
-		     	<%=h show_value(custom_value) %>
-		  	<% end %>
+				<% if !custom_value.value.blank? %>
+					<%=h show_value(custom_value) %>
+				<% end %>
 			</td>
-	  <% end %>
+		<% end %>
 
 	</tr>
 <% end %>

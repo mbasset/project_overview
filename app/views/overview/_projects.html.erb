@@ -3,19 +3,19 @@
 <% end %>
 
 <% content_for :sidebar do %>
-  <%= form_tag({}, :method => :get) do %>
+	<%= form_tag({}, :method => :get) do %>
 
-    <h3><%= l(:label_project_plural) %></h3>
-    <label for="closed"><%= check_box_tag 'closed', 1, params[:closed] %> <%= l(:label_show_closed_projects) %></label>
+		<h3><%= l(:label_project_plural) %></h3>
+		<label for="closed"><%= check_box_tag 'closed', 1, params[:closed] %> <%= l(:label_show_closed_projects) %></label>
 
-    <% if Setting.plugin_project_overview[:stale_enable] %>
-	    <br />
-	    <label for="stale"><%= check_box_tag 'stale', 1, params[:stale] %> <%= l(:label_show_stale_projects) %></label>
-    <% end %>
+		<% if Setting.plugin_project_overview[:stale_enable] %>
+			<br />
+			<label for="stale"><%= check_box_tag 'stale', 1, params[:stale] %> <%= l(:label_show_stale_projects) %></label>
+		<% end %>
 
-    <p><%= submit_tag l(:button_apply), :class => 'button-small', :name => nil %></p>
+		<p><%= submit_tag l(:button_apply), :class => 'button-small', :name => nil %></p>
 
-  <% end %>
+	<% end %>
 <% end %>
 
 <div class="autoscroll">
@@ -25,14 +25,17 @@
 			<% if Setting.plugin_project_overview[:stale_enable] %>
 				<th><%= l(:label_project_status) %></th>
 			<% end %>
-			<th><%= l(:label_project_current_version) %></th>
-			<th><%= l(:label_project_due_date) %></th>
+			<% if !!Setting.plugin_project_overview[:progress_by_version] %>
+				<th><%= l(:label_project_current_version) %></th>
+				<th><%= l(:label_project_version_progress) %></th>
+				<th><%= l(:label_project_due_date) %></th>
+			<% end %>
 			<th><%= l(:label_project_progress) %></th>
 			<th><%= l(:label_project_budget_comparision) %></th>
 			<th><%= l(:field_estimated_hours) %></th>
 			<th><%= l(:label_spent_time) %></th>
-			<% if Setting.plugin_project_overview[:progress_ratio] %>
-				<th><%= l(:label_project_ratio) %></th>
+			<% if Setting.plugin_project_overview[:project_spi] %>
+				<th><%= l(:label_project_spi) %></th>
 			<% end %>
 			<th><%= l(:label_project_health) %></th>
 			<% ProjectCustomField.scoped.each do |custom_field| %>
