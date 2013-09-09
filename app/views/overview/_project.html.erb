@@ -1,4 +1,4 @@
-<% current_version = project.shared_versions.where("effective_date >= ?", Time.now).order("effective_date ASC").last %>
+<% current_version = project.shared_versions.where("effective_date >= ?", Time.now).order("effective_date ASC").first %>
 
 <% active = true %>
 <% if Setting.plugin_project_overview[:stale_enable] %>
