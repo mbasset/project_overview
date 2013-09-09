@@ -103,7 +103,9 @@
 		<td align="center"><%= actual_hours.round(0) %></td>
 
 		<% hours_burned_percentage = (planned_hours || estimated_hours) == 0 ? 0 : (actual_hours/(planned_hours || estimated_hours))*100 %>
-		<% ticket_completion_percentage = project.completed_percent(:include_subprojects => true) %>
+		<% ticket_completion_percentage = project.self_and_descendants.map(&:issues).flatten.collect(&:done_ratio).sum / project.self_and_descendants.map(&:issues).flatten.count
+
+		project.completed_percent(:include_subprojects => true) %>
 
 		<% if Setting.plugin_project_overview[:project_spi] %>
 			<td align="center">
