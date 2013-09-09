@@ -47,7 +47,7 @@
 			<td align="center"><%= current_version.due_date if current_version %></td>
 		<% end %>
 		<td align="center" class="po_progress">
-			<%= progress_bar([ticket_completion_percentage, 0], :width => "100%") %>
+			<%= progress_bar([ticket_completion_percentage], :width => "100%") %>
 		</td>
 		<td align="center">
 			<% field_names = ['Project', 'Estimated Hours'] %>
