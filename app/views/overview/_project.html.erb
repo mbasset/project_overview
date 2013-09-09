@@ -16,6 +16,12 @@
 		<% planned_hours = planned_field_value.value.to_f if planned_field_value && !planned_field_value.value.blank? %>
 	<% end %>
 
+	<% num_tickets = project.self_and_descendants.map(&:issues).flatten.count %>
+	<% ticket_completion_percentage = 100 %>
+	<% if num_tickets > 0 %>
+		<% ticket_completion_percentage = project.self_and_descendants.map(&:issues).flatten.collect(&:done_ratio).sum / num_tickets %>
+	<% end %>
+
 	<tr class="po_project">
 		<td title="<%= project_full_title(project) %>"><%= link_to project.name, project_path(project) %></td>
 		<% if Setting.plugin_project_overview[:stale_enable] %>
@@ -41,7 +47,7 @@
 			<td align="center"><%= current_version.due_date if current_version %></td>
 		<% end %>
 		<td align="center" class="po_progress">
-			<%= progress_bar([project.completed_percent(:include_subprojects => true), 0], :width => "100%") %>
+			<%= progress_bar([ticket_completion_percentage, 0], :width => "100%") %>
 		</td>
 		<td align="center">
 			<% field_names = ['Project', 'Estimated Hours'] %>
@@ -103,12 +109,6 @@
 		<td align="center"><%= actual_hours.round(0) %></td>
 
 		<% hours_burned_percentage = (planned_hours || estimated_hours) == 0 ? 0 : (actual_hours/(planned_hours || estimated_hours))*100 %>
-
-		<% num_tickets = project.self_and_descendants.map(&:issues).flatten.count %>
-		<% ticket_completion_percentage = 100 %>
-		<% if num_tickets > 0 %>
-			<% ticket_completion_percentage = project.self_and_descendants.map(&:issues).flatten.collect(&:done_ratio).sum / num_tickets %>
-		<% end %>
 
 		<% if Setting.plugin_project_overview[:project_spi] %>
 			<td align="center">
