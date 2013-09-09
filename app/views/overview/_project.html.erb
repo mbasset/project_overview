@@ -116,13 +116,19 @@
 			</td>
 		<% end %>
 
-		<% budget_tending_towards = hours_burned_percentage/ticket_completion_percentage %>
+		<% budget_tending_towards = 1 %>
+		<% if ticket_completion_percentage > 0 %>
+			<% budget_tending_towards = hours_burned_percentage/ticket_completion_percentage %>
+		<% elsif ticket_completion_percentage == 0 && hours_burned_percentage > 0 %>
+			<% budget_tending_towards = 2 %>
+		<% end %>
+
 		<% velocity_class = "on_track" %>
 		<% velocity_title = l(:project_velocity_on_track) %>
 		<% if budget_tending_towards > 1.15 %>
 			<% velocity_class = "off_track" %>
 			<% velocity_title = l(:project_velocity_off_target) %>
-		<% elsif budget_tending_towards > 1 && budget_tending_towards < 1.15 %>
+		<% elsif budget_tending_towards > 1 && budget_tending_towards <= 1.15 %>
 			<% velocity_class = "intervention" %>
 			<% velocity_title = l(:project_velocity_intervention) %>
 		<% end %>
