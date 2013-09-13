@@ -10,11 +10,14 @@ en:
   label_po_settings_stale_num_days: "Number stale days:"
   label_po_settings_stale_num_days_desc: "Number of days of redmine inactivity before a project becomes stale."
 
+  label_po_settings_project_progress_percentage: Project Percentage
+  label_po_settings_project_progress_percentage_desc: Display project progress as a percentage.
+
   label_po_settings_progress_by_version: "Progress by version:"
   label_po_settings_progress_by_version_desc: "Display the progress bar for the current active project version."
 
   label_po_settings_progress_ratio: "Display Ratio"
-  label_po_settings_progress_ratio_desc: "Display the project progress ratio compared to estimated values. Formula: (actual_hours/estimated_hours)/estimated_hours %"
+  label_po_settings_progress_ratio_desc: "Displays the SPI value in this field."
 
   label_po_settings_sow_estimate_field: "SOW/CR Estimate"
   label_po_settings_sow_estimate_field_desc: "(Optional - Number only). Use this field to add the estimate from a SOW or CR which may be different from the redmine estimate."
@@ -34,7 +37,7 @@ en:
   label_po_settings_activity_sum_days_desc: "The number of days of activity to consider when ordering projects by activity."
 
   label_po_settings_project_spi: "Schedule Performance Index:"
-  label_po_settings_project_spi_desc: "Schedule Performance Index equals Earned Value / Planned Value. In redmine this equates to: (actual hours / estimate hours)*(% complete)"
+  label_po_settings_project_spi_desc: "Schedule Performance Index equals Earned Value / Planned Value. In redmine this equates to: (actual hours / estimate hours)/(% complete)"
 
   label_po_settings_team: "Team Settings"
   label_po_settings_inactive_team_num_days: "Inactive days:"

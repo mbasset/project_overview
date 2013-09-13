@@ -46,8 +46,11 @@
 			</td>
 			<td align="center"><%= current_version.due_date if current_version %></td>
 		<% end %>
-		<td align="center" class="po_progress">
+		<td align="center" class="po_progress" style="position: relative;">
 			<%= progress_bar(ticket_completion_percentage, :width => "100%") %>
+			<% if Setting.plugin_project_overview[:project_progress_percentage] %>
+				<div style="position: absolute; text-align: center; width: 100%; padding-top: 2px;"><%= ticket_completion_percentage.to_s + "%" %></div>
+			<% end %>
 		</td>
 		<td align="center">
 			<% field_names = ['Project', 'Estimated Hours'] %>
@@ -110,17 +113,17 @@
 
 		<% hours_burned_percentage = (planned_hours || estimated_hours) == 0 ? 0 : (actual_hours/(planned_hours || estimated_hours))*100 %>
 
-		<% if Setting.plugin_project_overview[:project_spi] %>
-			<td align="center">
-				<%= ((hours_burned_percentage*ticket_completion_percentage)/100.0).round(1) if planned_hours %>
-			</td>
-		<% end %>
-
 		<% budget_tending_towards = 1 %>
 		<% if ticket_completion_percentage > 0 %>
 			<% budget_tending_towards = hours_burned_percentage/ticket_completion_percentage %>
 		<% elsif ticket_completion_percentage == 0 && hours_burned_percentage > 0 %>
 			<% budget_tending_towards = 2 %>
+		<% end %>
+
+		<% if Setting.plugin_project_overview[:project_spi] %>
+			<td align="center">
+				<%= (budget_tending_towards).round(2) if planned_hours %>
+			</td>
 		<% end %>
 
 		<% velocity_class = "on_track" %>
@@ -134,7 +137,7 @@
 		<% end %>
 
 		<td align="center" class="<%= velocity_class %>" title="<%= velocity_title %>">
-			<%= (budget_tending_towards * 100.0).round(1).to_s + "%" if Setting.plugin_project_overview[:progress_ratio] %>
+			<%= (budget_tending_towards).round(2).to_s if Setting.plugin_project_overview[:progress_ratio] %>
 		</td>
 
 		<% project.visible_custom_field_values.each do |custom_value| %>
