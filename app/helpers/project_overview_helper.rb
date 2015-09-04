@@ -16,7 +16,11 @@ module ProjectOverviewHelper
   end
 
   def project_overview_spent_time(project)
-    TimeEntry.visible.sum(:hours, :include => :project, :conditions => project.project_condition(true))
+    # Fix the problem that spent_time calculate the wrong value, it should only sum up the time entries for specified project
+    cond = project.project_condition(true)
+    TimeEntry.visible.where(cond).sum(:hours)
+    #TimeEntry.visible.sum(:hours, :include => project, :conditions => project.project_condition(true))
+    #TimeEntry.visible.sum(:hours, :include => :project, :conditions => project.project_condition(true))
   end
 
   def project_overview_estimated_time(project)
